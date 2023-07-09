@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>arensb.truenas.hostname module &mdash; Ansible collections  documentation</title>
+  <title>arensb.truenas.hostname module – Set the hostname. &mdash; Ansible collections  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
@@ -115,7 +115,7 @@
           <li class="breadcrumb-item"><a href="../../index.html">Collection Index</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Collections in the Arensb Namespace</a></li>
           <li class="breadcrumb-item"><a href="index.html">Arensb.Truenas</a></li>
-      <li class="breadcrumb-item active">arensb.truenas.hostname module</li>
+      <li class="breadcrumb-item active">arensb.truenas.hostname module – Set the hostname.</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -126,19 +126,83 @@
   
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-arensb-truenas-hostname-module"></span><section id="arensb-truenas-hostname-module">
-<h1>arensb.truenas.hostname module<a class="headerlink" href="#arensb-truenas-hostname-module" title="Permalink to this heading"></a></h1>
-<p>The documentation for the module plugin, arensb.truenas.hostname,  was malformed.</p>
-<p>The errors were:</p>
-<ul>
-<li><div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">1 validation error for ModuleDocSchema</span>
-<span class="l l-Scalar l-Scalar-Plain">doc -&gt; short_description</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">field required (type=value_error.missing)</span>
+  <span class="target" id="ansible-collections-arensb-truenas-hostname-module"></span><section id="arensb-truenas-hostname-module-set-the-hostname">
+<h1>arensb.truenas.hostname module – Set the hostname.<a class="headerlink" href="#arensb-truenas-hostname-module-set-the-hostname" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.6.0).</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.hostname</span></code>.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Set the hostname, as part of the host’s network configuration.</p></li>
+<li><p>Does not set the FQDN.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-hostname-module-parameter-name"><strong>name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Hostname to set (not FQDN).</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set hostname</span>
+<span class="w">  </span><span class="nt">arensb.truenas.hostname</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-little-host</span>
 </pre></div>
 </div>
-</li>
-</ul>
-<p>File a bug with the <a class="reference external" href="https://github.com/arensb/ansible-truenas/issues">arensb.truenas collection</a> in order to have it corrected.</p>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this heading"></a></h2>
+<p>Common return values are documented <a class="reference external" href="https://docs.ansible.com/ansible/devel/reference_appendices/common_return_values.html#common-return-values" title="(in Ansible vdevel)"><span class="xref std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-msg"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-hostname-module-return-msg"><strong>msg</strong></p>
+<a class="ansibleOptionLink" href="#return-msg" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Status message, if warranted.</p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> In some cases</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="collection-links">
+<h3>Collection links<a class="headerlink" href="#collection-links" title="Permalink to this heading"></a></h3>
+<p class="ansible-links">
+  <a href="https://github.com/arensb/ansible-truenas/issues" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+  <a href="https://github.com/arensb/ansible-truenas" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+</p></section>
+</section>
 </section>
 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>arensb.truenas.user module &mdash; Ansible collections  documentation</title>
+  <title>arensb.truenas.user module – Manage user accounts &mdash; Ansible collections  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
@@ -115,7 +115,7 @@
           <li class="breadcrumb-item"><a href="../../index.html">Collection Index</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Collections in the Arensb Namespace</a></li>
           <li class="breadcrumb-item"><a href="index.html">Arensb.Truenas</a></li>
-      <li class="breadcrumb-item active">arensb.truenas.user module</li>
+      <li class="breadcrumb-item active">arensb.truenas.user module – Manage user accounts</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -126,23 +126,318 @@
   
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-arensb-truenas-user-module"></span><section id="arensb-truenas-user-module">
-<h1>arensb.truenas.user module<a class="headerlink" href="#arensb-truenas-user-module" title="Permalink to this heading"></a></h1>
-<p>The documentation for the module plugin, arensb.truenas.user,  was malformed.</p>
-<p>The errors were:</p>
-<ul>
-<li><div class="highlight-YAML+Jinja notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">3 validation errors for ModuleDocSchema</span>
-<span class="l l-Scalar l-Scalar-Plain">doc -&gt; options -&gt; ssh_authorized_keys -&gt; type</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">string does not match regex &quot;^(any|bits|bool|bytes|dict|float|int|json|jsonarg|list|path|raw|sid|str|tmppath|pathspec|pathlist)$&quot; (type=value_error.str.regex; pattern=^(any|bits|bool|bytes|dict|float|int|json|jsonarg|list|path|raw|sid|str|tmppath|pathspec|pathlist)$)</span>
-<span class="l l-Scalar l-Scalar-Plain">doc -&gt; options -&gt; sudo_commands -&gt; type</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">string does not match regex &quot;^(any|bits|bool|bytes|dict|float|int|json|jsonarg|list|path|raw|sid|str|tmppath|pathspec|pathlist)$&quot; (type=value_error.str.regex; pattern=^(any|bits|bool|bytes|dict|float|int|json|jsonarg|list|path|raw|sid|str|tmppath|pathspec|pathlist)$)</span>
-<span class="l l-Scalar l-Scalar-Plain">doc -&gt; options -&gt; sudo_commands_nopasswd -&gt; type</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">string does not match regex &quot;^(any|bits|bool|bytes|dict|float|int|json|jsonarg|list|path|raw|sid|str|tmppath|pathspec|pathlist)$&quot; (type=value_error.str.regex; pattern=^(any|bits|bool|bytes|dict|float|int|json|jsonarg|list|path|raw|sid|str|tmppath|pathspec|pathlist)$)</span>
+  <span class="target" id="ansible-collections-arensb-truenas-user-module"></span><section id="arensb-truenas-user-module-manage-user-accounts">
+<h1>arensb.truenas.user module – Manage user accounts<a class="headerlink" href="#arensb-truenas-user-module-manage-user-accounts" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.6.0).</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.user</span></code>.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add, change, and delete user accounts.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-append"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-append"><strong>append</strong></p>
+<a class="ansibleOptionLink" href="#parameter-append" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If true, the user will be added to the groups listed in <code class="docutils literal notranslate"><span class="pre">groups</span></code>, but not removed from any other groups.</p>
+<p>If false, the user will be added to the groups listed in <code class="docutils literal notranslate"><span class="pre">groups</span></code>, and removed from any other groups.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-append_pubkeys"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-append-pubkeys"><strong>append_pubkeys</strong></p>
+<a class="ansibleOptionLink" href="#parameter-append_pubkeys" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If true, the keys specified in <code class="docutils literal notranslate"><span class="pre">ssh_authorized_keys</span></code> will be added to the user’s <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code>, but any others that might be there will not be removed.</p>
+<p>If false, any keys not explicitly listed in <code class="docutils literal notranslate"><span class="pre">ssh_authorized_keys</span></code> will be removed from the user’s <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code>.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-comment"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-comment"><strong>comment</strong></p>
+<a class="ansibleOptionLink" href="#parameter-comment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>The full name (<em>GECOS</em> field) of the user.</p>
+<p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-create_group"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-create-group"><strong>create_group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-create_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If true, create a new group with the same name as the user.</p>
+<p>If such a group already exists, it is used and no new group is created.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">true</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-delete_group"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-delete-group"><strong>delete_group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-delete_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If true, delete the user’s primary group if it is not being used by any other users.</p>
+<p>If false, the primary group stays, even if it is now empty.</p>
+<p>Only used when deleting a user.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">true</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-email"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-email"><strong>email</strong></p>
+<a class="ansibleOptionLink" href="#parameter-email" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>User’s email address, in the form <em>user&#64;dom.ain</em>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-group"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-group"><strong>group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>The name of the user’s primary group.</p>
+<p>Required unless <code class="docutils literal notranslate"><span class="pre">create_group</span></code> is true.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-groups"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-groups"><strong>groups</strong></p>
+<a class="ansibleOptionLink" href="#parameter-groups" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of additional groups user will be added to.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">append</span></code> is true, the user will be added to all of the groups listed here.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">append</span></code> is false, then in addition, the user will be removed from all other groups (except the primary).</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-home"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-home"><strong>home</strong></p>
+<a class="ansibleOptionLink" href="#parameter-home" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>User’s home directory.</p>
+<p>Note that TrueNAS has restrictions on what this can be. As of this writing, the home directory has to begin with “/mnt”, or be “/nonexistent”.</p>
+<p>Note that if you create a user with home directory <code class="docutils literal notranslate"><span class="pre">&quot;/nonexistent&quot;</span></code>, then later change it to a real directory, that directory will not be populated with dot files.</p>
+<p>Note: If you create an account with a home directory that does not end in the username (e.g., if <code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">bob</span></code> and <code class="docutils literal notranslate"><span class="pre">home:</span> <span class="pre">/mnt/pool0/homes</span></code>), TrueNAS will append the username to form the real home directory (<code class="docutils literal notranslate"><span class="pre">/mnt/pool0/homes/bob</span></code>, in this example). This is not recommended. It is better to use the full home directory, ending with the username.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-name"></div>
+<div class="ansibleOptionAnchor" id="parameter-user"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-user"><span id="ansible-collections-arensb-truenas-user-module-parameter-name"></span><strong>name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: user</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Name of the user to manage.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-password"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-password"><strong>password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>User’s password, as a crypted string.</p>
+<p>Required unless <code class="docutils literal notranslate"><span class="pre">password_disabled</span></code> is true.</p>
+<p>Note: Currently there is no way to check whether the password needs to be changed, so this is used only when the user is created.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-password_disabled"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-password-disabled"><strong>password_disabled</strong></p>
+<a class="ansibleOptionLink" href="#parameter-password_disabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If true, the user’s password is disabled.</p>
+<p>They can still log in through other methods (e.g., ssh key).</p>
+<p>This is not a flag: if you set <code class="docutils literal notranslate"><span class="pre">password_disabled=true</span></code> on a user, the password field in <code class="docutils literal notranslate"><span class="pre">/etc/master.passwd</span></code> is set to <code class="docutils literal notranslate"><span class="pre">*</span></code>, so if you set <code class="docutils literal notranslate"><span class="pre">password_disabled=false</span></code> again, they won’t be able to log in with their old password.</p>
+<p>If you need that functionality, do something like prepend “*LOCK*” to the crypt string when locking a user, then remove it when unlocking.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-shell"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-shell"><strong>shell</strong></p>
+<a class="ansibleOptionLink" href="#parameter-shell" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>User’s shell.</p>
+<p>Must be one of the allowed shells from <code class="docutils literal notranslate"><span class="pre">/etc/shells</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ssh_authorized_keys"></div>
+<div class="ansibleOptionAnchor" id="parameter-pubkeys"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-ssh-authorized-keys"><span id="ansible-collections-arensb-truenas-user-module-parameter-pubkeys"></span><strong>ssh_authorized_keys</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ssh_authorized_keys" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: pubkeys</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of ssh public keys to put in the user’s <code class="docutils literal notranslate"><span class="pre">.ssh/authorized_keys</span></code> file.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-state"><strong>state</strong></p>
+<a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether the user should exist or not.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;absent&quot;</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;present&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-sudo"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo"><strong>sudo</strong></p>
+<a class="ansibleOptionLink" href="#parameter-sudo" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Deprecated. Use <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code> and/or <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> instead.</p>
+<p>Whether the user is allowed to sudo (see also <code class="docutils literal notranslate"><span class="pre">sudo_nopasswd</span></code> and <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code>).</p>
+<p>Note: this defaults to false. So if you create a user with <code class="docutils literal notranslate"><span class="pre">sudo:</span> <span class="pre">yes</span></code>, then comment out that line, the user will be removed from sudo.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-sudo_commands"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-commands"><strong>sudo_commands</strong></p>
+<a class="ansibleOptionLink" href="#parameter-sudo_commands" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of commands the user is allowed to execute using <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
+<p>Each command must use an absolute path, except for the special value “ALL”, which allows executing any command.</p>
+<p>Commands may include options, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;/bin/ls</span> <span class="pre">-l&quot;</span></code>.</p>
+<p>In TrueNAS CORE, and in older versions of SCALE, only one of <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code> and <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> may be specified.</p>
+<p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-sudo_commands_nopasswd"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-commands-nopasswd"><strong>sudo_commands_nopasswd</strong></p>
+<a class="ansibleOptionLink" href="#parameter-sudo_commands_nopasswd" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of commands the user is allowed to execute using <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, without having to give a password.</p>
+<p>Each command must use an absolute path, except for the special value “ALL”, which allows executing any command.</p>
+<p>Commands may include options, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;/bin/ls</span> <span class="pre">-l&quot;</span></code>.</p>
+<p>In TrueNAS CORE, and in older versions of SCALE, only one of <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code> and <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> may be specified.</p>
+<p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-sudo_nopasswd"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-nopasswd"><strong>sudo_nopasswd</strong></p>
+<a class="ansibleOptionLink" href="#parameter-sudo_nopasswd" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Deprecated. Use <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> instead.</p>
+<p>Allows user to sudo without a password.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-uid"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-uid"><strong>uid</strong></p>
+<a class="ansibleOptionLink" href="#parameter-uid" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Set the <em>UID</em> of the user.</p>
+<p>If the <em>IUID</em> is already taken, this will create a second user with the same <em>UID</em>.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create an ordinary user and their group</span>
+<span class="w">  </span><span class="nt">arensb.truenas.user</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bob</span>
+<span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bob</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">User&quot;</span>
+<span class="w">    </span><span class="nt">create_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;encrypted</span><span class="nv"> </span><span class="s">password</span><span class="nv"> </span><span class="s">string&gt;&quot;</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create an ordinary user and put them into an existing group</span>
+<span class="w">  </span><span class="nt">arensb.truenas.user</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bob</span>
+<span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bob</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">User&quot;</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;encrypted</span><span class="nv"> </span><span class="s">string&gt;&quot;</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create a user without a working password</span>
+<span class="w">  </span><span class="nt">arensb.truenas.user</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bob</span>
+<span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bob</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">User&quot;</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bobsgroup</span>
+<span class="w">    </span><span class="nt">password_disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete a user</span>
+<span class="w">  </span><span class="nt">arensb.truenas.user</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bob</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete a user, but keep their primary group, even if it&#39;s now empty.</span>
+<span class="w">  </span><span class="nt">arensb.truenas.user</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bob</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">    </span><span class="nt">delete_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span>
 </pre></div>
 </div>
-</li>
-</ul>
-<p>File a bug with the <a class="reference external" href="https://github.com/arensb/ansible-truenas/issues">arensb.truenas collection</a> in order to have it corrected.</p>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this heading"></a></h2>
+<p>Common return values are documented <a class="reference external" href="https://docs.ansible.com/ansible/devel/reference_appendices/common_return_values.html#common-return-values" title="(in Ansible vdevel)"><span class="xref std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-user_id"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-return-user-id"><strong>user_id</strong></p>
+<a class="ansibleOptionLink" href="#return-user_id" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>The ID of a newly-created user.</p>
+<p>This is not the <code class="docutils literal notranslate"><span class="pre">uid</span></code> as found in <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code>, but the database ID.</p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="collection-links">
+<h3>Collection links<a class="headerlink" href="#collection-links" title="Permalink to this heading"></a></h3>
+<p class="ansible-links">
+  <a href="https://github.com/arensb/ansible-truenas/issues" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+  <a href="https://github.com/arensb/ansible-truenas" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+</p></section>
+</section>
 </section>
 
 
