@@ -130,7 +130,7 @@
 <h1>arensb.truenas.user module – Manage user accounts<a class="headerlink" href="#arensb-truenas-user-module-manage-user-accounts" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.6.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.6.1).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.user</span></code>.</p>
 </div>
@@ -318,9 +318,9 @@
 <div class="ansibleOptionAnchor" id="parameter-sudo"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo"><strong>sudo</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sudo" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Deprecated. Use <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code> and/or <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> instead.</p>
-<p>Whether the user is allowed to sudo (see also <code class="docutils literal notranslate"><span class="pre">sudo_nopasswd</span></code> and <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code>).</p>
-<p>Note: this defaults to false. So if you create a user with <code class="docutils literal notranslate"><span class="pre">sudo:</span> <span class="pre">yes</span></code>, then comment out that line, the user will be removed from sudo.</p>
+<td><div class="ansible-option-cell"><p>Deprecated. Use <em>sudo_commands</em> and/or <em>sudo_commands_nopasswd</em> instead.</p>
+<p>Whether the user is allowed to sudo (see also <em>sudo_nopasswd</em> and <em>sudo_commands</em>).</p>
+<p>Note: this defaults to false. So if you create a user with <em>sudo: yes</em>, then comment out that line, the user will be removed from sudo.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
@@ -335,7 +335,7 @@
 <td><div class="ansible-option-cell"><p>List of commands the user is allowed to execute using <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
 <p>Each command must use an absolute path, except for the special value “ALL”, which allows executing any command.</p>
 <p>Commands may include options, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;/bin/ls</span> <span class="pre">-l&quot;</span></code>.</p>
-<p>In TrueNAS CORE, and in older versions of SCALE, only one of <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code> and <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> may be specified.</p>
+<p>In TrueNAS CORE, and in older versions of SCALE, only one of <em>sudo_commands</em> and <em>sudo_commands_nopasswd</em> may be specified.</p>
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -346,7 +346,7 @@
 <td><div class="ansible-option-cell"><p>List of commands the user is allowed to execute using <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, without having to give a password.</p>
 <p>Each command must use an absolute path, except for the special value “ALL”, which allows executing any command.</p>
 <p>Commands may include options, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;/bin/ls</span> <span class="pre">-l&quot;</span></code>.</p>
-<p>In TrueNAS CORE, and in older versions of SCALE, only one of <code class="docutils literal notranslate"><span class="pre">sudo_commands</span></code> and <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> may be specified.</p>
+<p>In TrueNAS CORE, and in older versions of SCALE, only one of <em>sudo_commands</em> and <em>sudo_commands_nopasswd</em> may be specified.</p>
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
@@ -354,7 +354,7 @@
 <div class="ansibleOptionAnchor" id="parameter-sudo_nopasswd"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-nopasswd"><strong>sudo_nopasswd</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sudo_nopasswd" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Deprecated. Use <code class="docutils literal notranslate"><span class="pre">sudo_commands_nopasswd</span></code> instead.</p>
+<td><div class="ansible-option-cell"><p>Deprecated. Use <em>sudo_commands_nopasswd</em> instead.</p>
 <p>Allows user to sudo without a password.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
@@ -425,7 +425,7 @@
 <a class="ansibleOptionLink" href="#return-user_id" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>The ID of a newly-created user.</p>
-<p>This is not the <code class="docutils literal notranslate"><span class="pre">uid</span></code> as found in <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code>, but the database ID.</p>
+<p>This is not the <em>uid</em> as found in <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code>, but the database ID.</p>
 <p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
 </div></td>
 </tr>
