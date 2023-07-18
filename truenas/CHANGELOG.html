@@ -86,6 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sharing_nfs_module.html">arensb.truenas.sharing_nfs module – Manage NFS sharing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sharing_smb_module.html">arensb.truenas.sharing_smb module – Manage SMB sharing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="systemdataset_module.html">arensb.truenas.systemdataset module – Manage the system dataset.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="truenas_facts_module.html">arensb.truenas.truenas_facts module – Gather TrueNAS-related facts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_module.html">arensb.truenas.user module – Manage user accounts</a></li>
 </ul>
 <!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
@@ -116,52 +117,82 @@
            <div itemprop="articleBody">
              
   <section id="arensb-truenas-release-notes">
-<h1><a class="toc-backref" href="#id6" role="doc-backlink">Arensb.Truenas Release Notes</a><a class="headerlink" href="#arensb-truenas-release-notes" title="Permalink to this heading"></a></h1>
+<h1><a class="toc-backref" href="#id8" role="doc-backlink">Arensb.Truenas Release Notes</a><a class="headerlink" href="#arensb-truenas-release-notes" title="Permalink to this heading"></a></h1>
 <nav class="contents" id="topics">
 <p class="topic-title">Topics</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#arensb-truenas-release-notes" id="id6">Arensb.Truenas Release Notes</a></p>
+<li><p><a class="reference internal" href="#arensb-truenas-release-notes" id="id8">Arensb.Truenas Release Notes</a></p>
 <ul>
-<li><p><a class="reference internal" href="#v1-6-2" id="id7">v1.6.2</a></p>
+<li><p><a class="reference internal" href="#v1-7-0" id="id9">v1.7.0</a></p>
 <ul>
-<li><p><a class="reference internal" href="#minor-changes" id="id8">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#major-changes" id="id10">Major Changes</a></p></li>
+<li><p><a class="reference internal" href="#minor-changes" id="id11">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#new-modules" id="id12">New Modules</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#v1-6-0" id="id9">v1.6.0</a></p>
+<li><p><a class="reference internal" href="#v1-6-2" id="id13">v1.6.2</a></p>
 <ul>
-<li><p><a class="reference internal" href="#release-summary" id="id10">Release Summary</a></p></li>
-<li><p><a class="reference internal" href="#major-changes" id="id11">Major Changes</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id14">Minor Changes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#v1-5-2" id="id12">v1.5.2</a></p></li>
-<li><p><a class="reference internal" href="#v1-5-1" id="id13">v1.5.1</a></p>
+<li><p><a class="reference internal" href="#v1-6-0" id="id15">v1.6.0</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id14">Release Summary</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id15">Minor Changes</a></p></li>
+<li><p><a class="reference internal" href="#release-summary" id="id16">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id17">Major Changes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#v1-5-0" id="id16">v1.5.0</a></p>
+<li><p><a class="reference internal" href="#v1-5-2" id="id18">v1.5.2</a></p></li>
+<li><p><a class="reference internal" href="#v1-5-1" id="id19">v1.5.1</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id17">Release Summary</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id18">Major Changes</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id20">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id21">Minor Changes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#v1-4-5" id="id19">v1.4.5</a></p>
+<li><p><a class="reference internal" href="#v1-5-0" id="id22">v1.5.0</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id5" id="id20">Release Summary</a></p></li>
-<li><p><a class="reference internal" href="#breaking-changes-porting-guide" id="id21">Breaking Changes / Porting Guide</a></p></li>
-<li><p><a class="reference internal" href="#deprecated-features" id="id22">Deprecated Features</a></p></li>
-<li><p><a class="reference internal" href="#bugfixes" id="id23">Bugfixes</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id23">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id24">Major Changes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#v1-4-5" id="id25">v1.4.5</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id7" id="id26">Release Summary</a></p></li>
+<li><p><a class="reference internal" href="#breaking-changes-porting-guide" id="id27">Breaking Changes / Porting Guide</a></p></li>
+<li><p><a class="reference internal" href="#deprecated-features" id="id28">Deprecated Features</a></p></li>
+<li><p><a class="reference internal" href="#bugfixes" id="id29">Bugfixes</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </nav>
-<section id="v1-6-2">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">v1.6.2</a><a class="headerlink" href="#v1-6-2" title="Permalink to this heading"></a></h2>
+<section id="v1-7-0">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">v1.7.0</a><a class="headerlink" href="#v1-7-0" title="Permalink to this heading"></a></h2>
+<section id="major-changes">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Major Changes</a><a class="headerlink" href="#major-changes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add the ‘truenas_facts’ module, for gathering Ansible facts about TrueNAS systems.</p></li>
+</ul>
+</section>
 <section id="minor-changes">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#minor-changes" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#minor-changes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add C(version_added) to each module’s documentation.</p></li>
+<li><p>Link to the online documentation in README.md, where it’ll be visible
+from both github and Ansible Galaxy.</p></li>
+</ul>
+</section>
+<section id="new-modules">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">New Modules</a><a class="headerlink" href="#new-modules" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>arensb.truenas.truenas_facts - Gather TrueNAS-related facts</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-6-2">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">v1.6.2</a><a class="headerlink" href="#v1-6-2" title="Permalink to this heading"></a></h2>
+<section id="id1">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add auto-generated CHANGELOG.html</p></li>
 <li><p>Add online documentation.</p></li>
@@ -169,13 +200,13 @@
 </section>
 </section>
 <section id="v1-6-0">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">v1.6.0</a><a class="headerlink" href="#v1-6-0" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">v1.6.0</a><a class="headerlink" href="#v1-6-0" title="Permalink to this heading"></a></h2>
 <section id="release-summary">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Release Summary</a><a class="headerlink" href="#release-summary" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Release Summary</a><a class="headerlink" href="#release-summary" title="Permalink to this heading"></a></h3>
 <p>Use native client code on the TrueNAS machine.</p>
 </section>
-<section id="major-changes">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">Major Changes</a><a class="headerlink" href="#major-changes" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Major Changes</a><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>For now, the old behavior is still the default. To use the new behavior, set the “middleware_method” environment variable to “client”, at either the play, block, or task level, using the “environment:” Ansible directive.</p></li>
 <li><p>The default behavior will be switched from “midclt” to “client” in a later version.</p></li>
@@ -184,54 +215,54 @@
 </section>
 </section>
 <section id="v1-5-2">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">v1.5.2</a><a class="headerlink" href="#v1-5-2" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">v1.5.2</a><a class="headerlink" href="#v1-5-2" title="Permalink to this heading"></a></h2>
 </section>
 <section id="v1-5-1">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">v1.5.1</a><a class="headerlink" href="#v1-5-1" title="Permalink to this heading"></a></h2>
-<section id="id1">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">v1.5.1</a><a class="headerlink" href="#v1-5-1" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>fix docstrings</p>
 </section>
-<section id="id2">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id4">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Minor Changes</a><a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Fix formatting in docstrings, so docs should generate better now.</p></li>
 </ul>
 </section>
 </section>
 <section id="v1-5-0">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">v1.5.0</a><a class="headerlink" href="#v1-5-0" title="Permalink to this heading"></a></h2>
-<section id="id3">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">v1.5.0</a><a class="headerlink" href="#v1-5-0" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>add ZFS snapshot tasks</p>
 </section>
-<section id="id4">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Major Changes</a><a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id6">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Major Changes</a><a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Added the C(pool_snapshot_task) module, which manages periodic snapshot tasks for ZFS volumes.</p></li>
 </ul>
 </section>
 </section>
 <section id="v1-4-5">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">v1.4.5</a><a class="headerlink" href="#v1-4-5" title="Permalink to this heading"></a></h2>
-<section id="id5">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">v1.4.5</a><a class="headerlink" href="#v1-4-5" title="Permalink to this heading"></a></h2>
+<section id="id7">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Release Summary</a><a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <p>Fix the way sudo is handled for users.</p>
 </section>
 <section id="breaking-changes-porting-guide">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Breaking Changes / Porting Guide</a><a class="headerlink" href="#breaking-changes-porting-guide" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Breaking Changes / Porting Guide</a><a class="headerlink" href="#breaking-changes-porting-guide" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>The C(sudo) and C(sudo_nopasswd) options are deprecated.</p></li>
 </ul>
 </section>
 <section id="deprecated-features">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">Deprecated Features</a><a class="headerlink" href="#deprecated-features" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Deprecated Features</a><a class="headerlink" href="#deprecated-features" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>In the user module, C(sudo) and C(sudo_nopasswd) options are deprecated. The C(sudo_commands) and C(sudo_commands_nopasswd) options are the preferred way to specify sudo permissions.</p></li>
 </ul>
 </section>
 <section id="bugfixes">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>user module sudo variables didn’t work with recent versions of TrueNAS SCALE.</p></li>
 </ul>
