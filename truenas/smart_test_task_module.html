@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>arensb.truenas.smart_test_task module – Schedule S.M.A.R.T. tests &mdash; Ansible collections  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="_static/antsibull-minimal.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="arensb.truenas.systemdataset module – Manage the system dataset." href="systemdataset_module.html" />
+    <link rel="prev" title="arensb.truenas.sharing_smb module – Manage SMB sharing" href="sharing_smb_module.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Ansible Collections Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Ansible collections
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="filesystem_module.html">arensb.truenas.filesystem module – Manage ZFS filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_module.html">arensb.truenas.group module – Manage groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hostname_module.html">arensb.truenas.hostname module – Set the hostname.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jail_module.html">arensb.truenas.jail module – Manage a jail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jails_module.html">arensb.truenas.jails module – Configure jail system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mail_module.html">arensb.truenas.mail module – Manage TrueNAS email settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfs_module.html">arensb.truenas.nfs module – Configure NFS service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin_module.html">arensb.truenas.plugin module – Manage plugins.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool_snapshot_task_module.html">arensb.truenas.pool_snapshot_task module – Maintain periodic disk pool snapshot tasks.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_module.html">arensb.truenas.service module – Manage TrueNAS services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_nfs_module.html">arensb.truenas.sharing_nfs module – Manage NFS sharing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharing_smb_module.html">arensb.truenas.sharing_smb module – Manage SMB sharing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">arensb.truenas.smart_test_task module – Schedule S.M.A.R.T. tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#return-values">Return Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#collection-links">Collection links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="systemdataset_module.html">arensb.truenas.systemdataset module – Manage the system dataset.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="truenas_facts_module.html">arensb.truenas.truenas_facts module – Gather TrueNAS-related facts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_module.html">arensb.truenas.user module – Manage user accounts</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ansible collections</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">arensb.truenas.smart_test_task module – Schedule S.M.A.R.T. tests</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansible-collections-arensb-truenas-smart-test-task-module"></span><section id="arensb-truenas-smart-test-task-module-schedule-s-m-a-r-t-tests">
+<h1>arensb.truenas.smart_test_task module – Schedule S.M.A.R.T. tests<a class="headerlink" href="#arensb-truenas-smart-test-task-module-schedule-s-m-a-r-t-tests" title="Permalink to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.7.2).</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.smart_test_task</span></code>.</p>
+</div>
+<p class="ansible-version-added">New in arensb.truenas XXX</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Schedule S.M.A.R.T. tests under “Tasks”.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-day"></div>
+<div class="ansibleOptionAnchor" id="parameter-date"></div>
+<div class="ansibleOptionAnchor" id="parameter-dom"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-dom"><span id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-day"></span><span id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-date"></span><strong>day</strong></p>
+<a class="ansibleOptionLink" href="#parameter-day" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: date, dom</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Day of month when the task should run, in cron format.</p>
+<p>This is a comma-separated list of integer ranges, e.g., “10”, “1-5”, “1,3,7-10”.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-disks"></div>
+<div class="ansibleOptionAnchor" id="parameter-discs"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-disks"><span id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-discs"></span><strong>disks</strong></p>
+<a class="ansibleOptionLink" href="#parameter-disks" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: discs</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of disk devices to check, e.g., “da0”.</p>
+<p>The special value “ALL” means to check all disks.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-hour"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-hour"><strong>hour</strong></p>
+<a class="ansibleOptionLink" href="#parameter-hour" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Hour when the task should run, in cron format.</p>
+<p>This is a comma-separated list of integer ranges.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-minute"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-minute"><strong>minute</strong></p>
+<a class="ansibleOptionLink" href="#parameter-minute" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>This parameter is ignored, and exists only for compatibility with builtin.cron.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-month"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-month"><strong>month</strong></p>
+<a class="ansibleOptionLink" href="#parameter-month" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Month when the task should run, in cron format.</p>
+<p>This is a comma-separated list of month names or numbers, e.g., “jan,feb,mar”.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-name"><strong>name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Name of the test. This must be unique across S.M.A.R.T. test tasks, since it effectively acts as an identifier.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-state"><strong>state</strong></p>
+<a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether the task should exist or not.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;absent&quot;</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;present&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-test"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-test"><strong>test</strong></p>
+<a class="ansibleOptionLink" href="#parameter-test" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>The test to perform. Choices are “long”, “short”, “conveyance”, and “offline”.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;long&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;short&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;conveyance&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;offline&quot;</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-weekday"></div>
+<div class="ansibleOptionAnchor" id="parameter-dow"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-weekday"><span id="ansible-collections-arensb-truenas-smart-test-task-module-parameter-dow"></span><strong>weekday</strong></p>
+<a class="ansibleOptionLink" href="#parameter-weekday" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: dow</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Day of week when the task should run, in cron format.</p>
+<p>This is a comma-separated list of day numbers of abbreviations, e.g. “1”, “1,5”, “sun,mon”.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this heading"></a></h2>
+<p>Common return values are documented <a class="reference external" href="https://docs.ansible.com/ansible/devel/reference_appendices/common_return_values.html#common-return-values" title="(in Ansible vdevel)"><span class="xref std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-task"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-smart-test-task-module-return-task"><strong>task</strong></p>
+<a class="ansibleOptionLink" href="#return-task" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>A structure describing a newly-created task.</p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="collection-links">
+<h3>Collection links<a class="headerlink" href="#collection-links" title="Permalink to this heading"></a></h3>
+<p class="ansible-links">
+  <a href="https://github.com/arensb/ansible-truenas/issues" aria-role="button" target="_blank" rel="noopener external">Issue Tracker</a>
+  <a href="https://github.com/arensb/ansible-truenas" aria-role="button" target="_blank" rel="noopener external">Repository (Sources)</a>
+</p></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sharing_smb_module.html" class="btn btn-neutral float-left" title="arensb.truenas.sharing_smb module – Manage SMB sharing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="systemdataset_module.html" class="btn btn-neutral float-right" title="arensb.truenas.systemdataset module – Manage the system dataset." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Ansible contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
