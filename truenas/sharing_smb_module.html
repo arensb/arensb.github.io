@@ -21,7 +21,7 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="arensb.truenas.systemdataset module – Manage the system dataset." href="systemdataset_module.html" />
+    <link rel="next" title="arensb.truenas.smart module – Configure S.M.A.R.T. service" href="smart_module.html" />
     <link rel="prev" title="arensb.truenas.sharing_nfs module – Manage NFS sharing" href="sharing_nfs_module.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
@@ -79,10 +79,12 @@
 <li class="toctree-l1"><a class="reference internal" href="group_module.html">arensb.truenas.group module – Manage groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname_module.html">arensb.truenas.hostname module – Set the hostname.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jail_module.html">arensb.truenas.jail module – Manage a jail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jail_fstab_module.html">arensb.truenas.jail_fstab module – Manage a jail’s fstab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jails_module.html">arensb.truenas.jails module – Configure jail system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mail_module.html">arensb.truenas.mail module – Manage TrueNAS email settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nfs_module.html">arensb.truenas.nfs module – Configure NFS service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plugin_module.html">arensb.truenas.plugin module – Manage plugins.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool_scrub_task_module.html">arensb.truenas.pool_scrub_task module – Schedule periodic scrub of ZFS pools.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pool_snapshot_task_module.html">arensb.truenas.pool_snapshot_task module – Maintain periodic disk pool snapshot tasks.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service_module.html">arensb.truenas.service module – Manage TrueNAS services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sharing_nfs_module.html">arensb.truenas.sharing_nfs module – Manage NFS sharing</a></li>
@@ -96,6 +98,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="smart_module.html">arensb.truenas.smart module – Configure S.M.A.R.T. service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smart_test_task_module.html">arensb.truenas.smart_test_task module – Schedule S.M.A.R.T. tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="systemdataset_module.html">arensb.truenas.systemdataset module – Manage the system dataset.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="truenas_facts_module.html">arensb.truenas.truenas_facts module – Gather TrueNAS-related facts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_module.html">arensb.truenas.user module – Manage user accounts</a></li>
@@ -131,7 +135,7 @@
 <h1>arensb.truenas.sharing_smb module – Manage SMB sharing<a class="headerlink" href="#arensb-truenas-sharing-smb-module-manage-smb-sharing" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.7.2).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.9.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.sharing_smb</span></code>.</p>
 </div>
@@ -463,7 +467,7 @@
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="sharing_nfs_module.html" class="btn btn-neutral float-left" title="arensb.truenas.sharing_nfs module – Manage NFS sharing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="systemdataset_module.html" class="btn btn-neutral float-right" title="arensb.truenas.systemdataset module – Manage the system dataset." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="smart_module.html" class="btn btn-neutral float-right" title="arensb.truenas.smart module – Configure S.M.A.R.T. service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

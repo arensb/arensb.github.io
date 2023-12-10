@@ -78,14 +78,17 @@
 <li class="toctree-l1"><a class="reference internal" href="group_module.html">arensb.truenas.group module – Manage groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname_module.html">arensb.truenas.hostname module – Set the hostname.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jail_module.html">arensb.truenas.jail module – Manage a jail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jail_fstab_module.html">arensb.truenas.jail_fstab module – Manage a jail’s fstab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jails_module.html">arensb.truenas.jails module – Configure jail system</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mail_module.html">arensb.truenas.mail module – Manage TrueNAS email settings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nfs_module.html">arensb.truenas.nfs module – Configure NFS service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plugin_module.html">arensb.truenas.plugin module – Manage plugins.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool_scrub_task_module.html">arensb.truenas.pool_scrub_task module – Schedule periodic scrub of ZFS pools.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pool_snapshot_task_module.html">arensb.truenas.pool_snapshot_task module – Maintain periodic disk pool snapshot tasks.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service_module.html">arensb.truenas.service module – Manage TrueNAS services</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sharing_nfs_module.html">arensb.truenas.sharing_nfs module – Manage NFS sharing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sharing_smb_module.html">arensb.truenas.sharing_smb module – Manage SMB sharing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smart_module.html">arensb.truenas.smart module – Configure S.M.A.R.T. service</a></li>
 <li class="toctree-l1"><a class="reference internal" href="smart_test_task_module.html">arensb.truenas.smart_test_task module – Schedule S.M.A.R.T. tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="systemdataset_module.html">arensb.truenas.systemdataset module – Manage the system dataset.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="truenas_facts_module.html">arensb.truenas.truenas_facts module – Gather TrueNAS-related facts</a></li>
@@ -120,7 +123,7 @@
              
   <section id="arensb-truenas">
 <span id="plugins-in-arensb-truenas"></span><h1>Arensb.Truenas<a class="headerlink" href="#arensb-truenas" title="Permalink to this heading"></a></h1>
-<p>Collection version 1.7.2</p>
+<p>Collection version 1.9.0</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
@@ -155,14 +158,17 @@
 <li><p><a class="reference internal" href="group_module.html#ansible-collections-arensb-truenas-group-module"><span class="std std-ref">group module</span></a> – Manage groups</p></li>
 <li><p><a class="reference internal" href="hostname_module.html#ansible-collections-arensb-truenas-hostname-module"><span class="std std-ref">hostname module</span></a> – Set the hostname.</p></li>
 <li><p><a class="reference internal" href="jail_module.html#ansible-collections-arensb-truenas-jail-module"><span class="std std-ref">jail module</span></a> – Manage a jail</p></li>
+<li><p><a class="reference internal" href="jail_fstab_module.html#ansible-collections-arensb-truenas-jail-fstab-module"><span class="std std-ref">jail_fstab module</span></a> – Manage a jail’s fstab</p></li>
 <li><p><a class="reference internal" href="jails_module.html#ansible-collections-arensb-truenas-jails-module"><span class="std std-ref">jails module</span></a> – Configure jail system</p></li>
 <li><p><a class="reference internal" href="mail_module.html#ansible-collections-arensb-truenas-mail-module"><span class="std std-ref">mail module</span></a> – Manage TrueNAS email settings</p></li>
 <li><p><a class="reference internal" href="nfs_module.html#ansible-collections-arensb-truenas-nfs-module"><span class="std std-ref">nfs module</span></a> – Configure NFS service</p></li>
 <li><p><a class="reference internal" href="plugin_module.html#ansible-collections-arensb-truenas-plugin-module"><span class="std std-ref">plugin module</span></a> – Manage plugins.</p></li>
+<li><p><a class="reference internal" href="pool_scrub_task_module.html#ansible-collections-arensb-truenas-pool-scrub-task-module"><span class="std std-ref">pool_scrub_task module</span></a> – Schedule periodic scrub of ZFS pools.</p></li>
 <li><p><a class="reference internal" href="pool_snapshot_task_module.html#ansible-collections-arensb-truenas-pool-snapshot-task-module"><span class="std std-ref">pool_snapshot_task module</span></a> – Maintain periodic disk pool snapshot tasks.</p></li>
 <li><p><a class="reference internal" href="service_module.html#ansible-collections-arensb-truenas-service-module"><span class="std std-ref">service module</span></a> – Manage TrueNAS services</p></li>
 <li><p><a class="reference internal" href="sharing_nfs_module.html#ansible-collections-arensb-truenas-sharing-nfs-module"><span class="std std-ref">sharing_nfs module</span></a> – Manage NFS sharing</p></li>
 <li><p><a class="reference internal" href="sharing_smb_module.html#ansible-collections-arensb-truenas-sharing-smb-module"><span class="std std-ref">sharing_smb module</span></a> – Manage SMB sharing</p></li>
+<li><p><a class="reference internal" href="smart_module.html#ansible-collections-arensb-truenas-smart-module"><span class="std std-ref">smart module</span></a> – Configure S.M.A.R.T. service</p></li>
 <li><p><a class="reference internal" href="smart_test_task_module.html#ansible-collections-arensb-truenas-smart-test-task-module"><span class="std std-ref">smart_test_task module</span></a> – Schedule S.M.A.R.T. tests</p></li>
 <li><p><a class="reference internal" href="systemdataset_module.html#ansible-collections-arensb-truenas-systemdataset-module"><span class="std std-ref">systemdataset module</span></a> – Manage the system dataset.</p></li>
 <li><p><a class="reference internal" href="truenas_facts_module.html#ansible-collections-arensb-truenas-truenas-facts-module"><span class="std std-ref">truenas_facts module</span></a> – Gather TrueNAS-related facts</p></li>
