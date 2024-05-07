@@ -85,7 +85,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">arensb.truenas.nfs module – Configure NFS service</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#return-values">Return Values</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#collection-links">Collection links</a></li>
 </ul>
 </li>
@@ -134,7 +135,7 @@
 <h1>arensb.truenas.nfs module – Configure NFS service<a class="headerlink" href="#arensb-truenas-nfs-module-configure-nfs-service" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.9.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.9.1).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.nfs</span></code>.</p>
 </div>
@@ -144,6 +145,7 @@
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
 <li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
 <li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
 </ul>
 </nav>
 <section id="synopsis">
@@ -163,6 +165,65 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-allow_nonroot"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-allow-nonroot"><strong>allow_nonroot</strong></p>
+<a class="ansibleOptionLink" href="#parameter-allow_nonroot" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>When true, allow non-root requests to be served.</p>
+<p>Sets the <code class="docutils literal notranslate"><span class="pre">-n</span></code> option to <code class="docutils literal notranslate"><span class="pre">mountd</span></code>.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-bindip"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-bindip"><strong>bindip</strong></p>
+<a class="ansibleOptionLink" href="#parameter-bindip" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>List of IP addresses on which to listen for NFS requests. When this is the empty list, listen on all available addresses.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-domain"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-domain"><strong>domain</strong></p>
+<a class="ansibleOptionLink" href="#parameter-domain" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Overrides the default DNS domain name for NFSv4.</p>
+<p>Passes the <code class="docutils literal notranslate"><span class="pre">-domain</span></code> option to <code class="docutils literal notranslate"><span class="pre">nfsuserd</span></code>.</p>
+<p>Ignored unless <code class="docutils literal notranslate"><span class="pre">nfsv4</span></code> is true.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-krb"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-krb"><strong>krb</strong></p>
+<a class="ansibleOptionLink" href="#parameter-krb" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Turn on Kerberos for NFSv4. Forces shares to fail without a Kerberos ticket.</p>
+<p>This enables the <code class="docutils literal notranslate"><span class="pre">gssd</span></code> daemon.</p>
+<p>Ignored unless <code class="docutils literal notranslate"><span class="pre">nfsv4</span></code> is true.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-mountd_log"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-mountd-log"><strong>mountd_log</strong></p>
+<a class="ansibleOptionLink" href="#parameter-mountd_log" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>When true, log successful mount requests.</p>
+<p>Passes the <code class="docutils literal notranslate"><span class="pre">-l</span></code> option to <code class="docutils literal notranslate"><span class="pre">mountd</span></code>.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-mountd_port"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-mountd-port"><strong>mountd_port</strong></p>
+<a class="ansibleOptionLink" href="#parameter-mountd_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Specifies the port that <code class="docutils literal notranslate"><span class="pre">mountd</span></code> should bind to.</p>
+<p>This passes the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option to <code class="docutils literal notranslate"><span class="pre">mountd</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-nfsv4"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-nfsv4"><strong>nfsv4</strong></p>
 <a class="ansibleOptionLink" href="#parameter-nfsv4" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -175,10 +236,74 @@
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-rpclockd_port"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-rpclockd-port"><strong>rpclockd_port</strong></p>
+<a class="ansibleOptionLink" href="#parameter-rpclockd_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Specifies the port that <code class="docutils literal notranslate"><span class="pre">rpc.lockd</span></code> binds to.</p>
+<p>This passes the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option to <code class="docutils literal notranslate"><span class="pre">rpc.lockd</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-rpcstatd_port"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-rpcstatd-port"><strong>rpcstatd_port</strong></p>
+<a class="ansibleOptionLink" href="#parameter-rpcstatd_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Specifies the port that <code class="docutils literal notranslate"><span class="pre">rpc.statd</span></code> binds to.</p>
+<p>This passes the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option to <code class="docutils literal notranslate"><span class="pre">rpc.statd</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-servers"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-servers"><strong>servers</strong></p>
+<a class="ansibleOptionLink" href="#parameter-servers" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>The number of NFS servers to create. This value is passed to the <code class="docutils literal notranslate"><span class="pre">-n</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">nfsd</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-statd_lockd_log"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-statd-lockd-log"><strong>statd_lockd_log</strong></p>
+<a class="ansibleOptionLink" href="#parameter-statd_lockd_log" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>When true, turn on extra logging of <code class="docutils literal notranslate"><span class="pre">rpc.statd</span></code> and <code class="docutils literal notranslate"><span class="pre">rpc.lockd</span></code>, for debugging.</p>
+<p>Passes the <code class="docutils literal notranslate"><span class="pre">-d</span></code> flag to <code class="docutils literal notranslate"><span class="pre">rpc.statd</span></code> and <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">10</span></code> to <code class="docutils literal notranslate"><span class="pre">rpc.lockd</span></code>.</p>
+<p>These are debugging flags and are not normally needed.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-udp"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-udp"><strong>udp</strong></p>
+<a class="ansibleOptionLink" href="#parameter-udp" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If true, serve UDP clients. Use this if you have NFS clients that have to use UDP.</p>
+<p>This sets the <code class="docutils literal notranslate"><span class="pre">-u</span></code> option to <code class="docutils literal notranslate"><span class="pre">nfsd</span></code>.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-userd_manage_gids"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-userd-manage-gids"><strong>userd_manage_gids</strong></p>
+<a class="ansibleOptionLink" href="#parameter-userd_manage_gids" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Use this when a user is a member of more than 16 groups.</p>
+<p>Passes the <code class="docutils literal notranslate"><span class="pre">-manage-gids</span></code> option to <code class="docutils literal notranslate"><span class="pre">nfsuserd</span></code>.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-v3owner"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-parameter-v3owner"><strong>v3owner</strong></p>
 <a class="ansibleOptionLink" href="#parameter-v3owner" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Enable the NFSv3 ownership model for NFSv4.</p>
+<p>Ignored unless <code class="docutils literal notranslate"><span class="pre">nfsv4</span></code> is true.</p>
 </div></td>
 </tr>
 </tbody>
@@ -194,6 +319,28 @@
 <span class="w">        </span><span class="nt">nfsv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
 </pre></div>
 </div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this heading"></a></h2>
+<p>Common return values are documented <a class="reference external" href="https://docs.ansible.com/ansible/devel/reference_appendices/common_return_values.html#common-return-values" title="(in Ansible vdevel)"><span class="xref std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table class="ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-status"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-nfs-module-return-status"><strong>status</strong></p>
+<a class="ansibleOptionLink" href="#return-status" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>A data structure describing the state of the NFS service.</p>
+<p>In check_mode and when no changes are needed, this is the current state of the NFS service. When changes have successfully been made, this is the new state of the NFS service.</p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
+</div></td>
+</tr>
+</tbody>
+</table>
 <section id="collection-links">
 <h3>Collection links<a class="headerlink" href="#collection-links" title="Permalink to this heading"></a></h3>
 <p class="ansible-links">

@@ -134,7 +134,7 @@
 <h1>arensb.truenas.user module – Manage user accounts<a class="headerlink" href="#arensb-truenas-user-module-manage-user-accounts" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.9.0).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.9.1).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.user</span></code>.</p>
 </div>
@@ -283,6 +283,7 @@
 <p>They can still log in through other methods (e.g., ssh key).</p>
 <p>This is not a flag: if you set <code class="docutils literal notranslate"><span class="pre">password_disabled=true</span></code> on a user, the password field in <code class="docutils literal notranslate"><span class="pre">/etc/master.passwd</span></code> is set to <code class="docutils literal notranslate"><span class="pre">*</span></code>, so if you set <code class="docutils literal notranslate"><span class="pre">password_disabled=false</span></code> again, they won’t be able to log in with their old password.</p>
 <p>If you need that functionality, do something like prepend “*LOCK*” to the crypt string when locking a user, then remove it when unlocking.</p>
+<p>Note that under TrueNAS SCALE, a user with <code class="docutils literal notranslate"><span class="pre">password_disabled</span></code> may not use SMB, so be sure to set <code class="docutils literal notranslate"><span class="pre">smb:</span> <span class="pre">false</span></code>.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
@@ -299,6 +300,19 @@
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-smb"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-smb"><strong>smb</strong></p>
+<a class="ansibleOptionLink" href="#parameter-smb" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Specifies whether user should have access to SMB shares.</p>
+<p>Under TrueNAS SCALE, a user with <code class="docutils literal notranslate"><span class="pre">smb</span></code> enabled may not have their password disabled.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">true</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-ssh_authorized_keys"></div>
 <div class="ansibleOptionAnchor" id="parameter-pubkeys"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-ssh-authorized-keys"><span id="ansible-collections-arensb-truenas-user-module-parameter-pubkeys"></span><strong>ssh_authorized_keys</strong></p>
 <a class="ansibleOptionLink" href="#parameter-ssh_authorized_keys" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: pubkeys</span></p>
@@ -307,7 +321,7 @@
 <td><div class="ansible-option-cell"><p>List of ssh public keys to put in the user’s <code class="docutils literal notranslate"><span class="pre">.ssh/authorized_keys</span></code> file.</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -319,7 +333,7 @@
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-sudo"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo"><strong>sudo</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sudo" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -333,7 +347,7 @@
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-sudo_commands"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-commands"><strong>sudo_commands</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sudo_commands" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -344,7 +358,7 @@
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-sudo_commands_nopasswd"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-commands-nopasswd"><strong>sudo_commands_nopasswd</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sudo_commands_nopasswd" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
 </div></td>
@@ -355,7 +369,7 @@
 <p class="ansible-option-line"><span class="ansible-option-default-bold">Default:</span> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-sudo_nopasswd"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-sudo-nopasswd"><strong>sudo_nopasswd</strong></p>
 <a class="ansibleOptionLink" href="#parameter-sudo_nopasswd" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -368,7 +382,7 @@
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-uid"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-user-module-parameter-uid"><strong>uid</strong></p>
 <a class="ansibleOptionLink" href="#parameter-uid" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
