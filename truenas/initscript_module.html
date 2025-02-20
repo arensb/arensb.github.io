@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>arensb.truenas.filesystem module – Manage ZFS filesystems &mdash; Ansible collections  documentation</title>
+  <title>arensb.truenas.initscript module – Manage init/shutdown scripts. &mdash; Ansible collections  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/ansible.css" type="text/css" />
       <link rel="stylesheet" href="_static/antsibull-minimal.css" type="text/css" />
@@ -21,8 +21,8 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="arensb.truenas.group module – Manage groups" href="group_module.html" />
-    <link rel="prev" title="Arensb.Truenas" href="index.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+    <link rel="next" title="arensb.truenas.jail module – Manage a jail" href="jail_module.html" />
+    <link rel="prev" title="arensb.truenas.hostname module – Set the hostname." href="hostname_module.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
 
@@ -75,7 +75,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
   
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">arensb.truenas.filesystem module – Manage ZFS filesystems</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="filesystem_module.html">arensb.truenas.filesystem module – Manage ZFS filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_module.html">arensb.truenas.group module – Manage groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hostname_module.html">arensb.truenas.hostname module – Set the hostname.</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">arensb.truenas.initscript module – Manage init/shutdown scripts.</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
@@ -85,9 +88,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="group_module.html">arensb.truenas.group module – Manage groups</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hostname_module.html">arensb.truenas.hostname module – Set the hostname.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="initscript_module.html">arensb.truenas.initscript module – Manage init/shutdown scripts.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jail_module.html">arensb.truenas.jail module – Manage a jail</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jail_fstab_module.html">arensb.truenas.jail_fstab module – Manage a jail’s fstab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jails_module.html">arensb.truenas.jails module – Configure jail system</a></li>
@@ -121,7 +121,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">arensb.truenas.filesystem module – Manage ZFS filesystems</li>
+      <li class="breadcrumb-item active">arensb.truenas.initscript module – Manage init/shutdown scripts.</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -132,15 +132,15 @@
   
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-arensb-truenas-filesystem-module"></span><section id="arensb-truenas-filesystem-module-manage-zfs-filesystems">
-<h1>arensb.truenas.filesystem module – Manage ZFS filesystems<a class="headerlink" href="#arensb-truenas-filesystem-module-manage-zfs-filesystems" title="Permalink to this heading"></a></h1>
+  <span class="target" id="ansible-collections-arensb-truenas-initscript-module"></span><section id="arensb-truenas-initscript-module-manage-init-shutdown-scripts">
+<h1>arensb.truenas.initscript module – Manage init/shutdown scripts.<a class="headerlink" href="#arensb-truenas-initscript-module-manage-init-shutdown-scripts" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.10.0).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
-<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.filesystem</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.initscript</span></code>.</p>
 </div>
-<p class="ansible-version-added">New in arensb.truenas 0.3.0</p>
+<p class="ansible-version-added">New in arensb.truenas 1.10.0</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
@@ -152,7 +152,7 @@
 <section id="synopsis">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Create, delete, and manage ZFS filesystems. Currently this is limited to just creation and deletion.</p></li>
+<li><p>Set up and manage init and shutdown scripts and commands.</p></li>
 </ul>
 </section>
 <section id="parameters">
@@ -165,28 +165,71 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-comment"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-comment"><strong>comment</strong></p>
-<a class="ansibleOptionLink" href="#parameter-comment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-cmd"></div>
+<div class="ansibleOptionAnchor" id="parameter-command"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-command"><span id="ansible-collections-arensb-truenas-initscript-module-parameter-cmd"></span><strong>cmd</strong></p>
+<a class="ansibleOptionLink" href="#parameter-cmd" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-aliases">aliases: command</span></p>
+<p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Comment attached to the filesystem.</p>
+<td><div class="ansible-option-cell"><p>Command to execute.</p>
+<p>Mutually exclusive with <code class="docutils literal notranslate"><span class="pre">path</span></code> and <code class="docutils literal notranslate"><span class="pre">script</span></code>.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-name"><strong>name</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Name of the filesystem.</p>
+<td><div class="ansible-option-cell"><p>Name of the script. Acts as an identifier.</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-state"><strong>state</strong></p>
+<div class="ansibleOptionAnchor" id="parameter-path"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-path"><strong>path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to a script to execute.</p>
+<p>Mutually exclusive with <code class="docutils literal notranslate"><span class="pre">cmd</span></code> and <code class="docutils literal notranslate"><span class="pre">script</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-script"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-script"><strong>script</strong></p>
+<a class="ansibleOptionLink" href="#parameter-script" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Text of the script to execute.</p>
+<p>When it is time to execute the script, the text will be saved to a temporary file, which will then be executed with <code class="docutils literal notranslate"><span class="pre">sh</span></code>.</p>
+<p>Mutually exclusive with <code class="docutils literal notranslate"><span class="pre">cmd</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Whether the filesystem should exist or not.</p>
+<td><div class="ansible-option-cell"><p>Whether the script should exist or not.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;absent&quot;</span></code></p></li>
 <li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;present&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-timeout"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-timeout"><strong>timeout</strong></p>
+<a class="ansibleOptionLink" href="#parameter-timeout" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Time in seconds that the system should wait for the script to terminate.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-when"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-parameter-when"><strong>when</strong></p>
+<a class="ansibleOptionLink" href="#parameter-when" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>When to execute the script:</p>
+<p><code class="docutils literal notranslate"><span class="pre">preinit</span></code>: at boot time, before most services have started, but filesystems and network are available.</p>
+<p><code class="docutils literal notranslate"><span class="pre">postinit</span></code>: late in the boot process, after most services have started, but before TrueNAS services.</p>
+<p><code class="docutils literal notranslate"><span class="pre">shutdown</span></code>: during shutdown.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;preinit&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;postinit&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;shutdown&quot;</span></code></p></li>
 </ul>
 </div></td>
 </tr>
@@ -195,13 +238,26 @@
 </section>
 <section id="examples">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create a filesystem</span>
-<span class="w">  </span><span class="nt">arensb.truenas.filesystem</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pool0/mydata</span>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run a command late once everything has started</span>
+<span class="w">  </span><span class="nt">initscript</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start Foo</span>
+<span class="w">    </span><span class="nt">cmd</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;service</span><span class="nv"> </span><span class="s">foo</span><span class="nv"> </span><span class="s">start&quot;</span>
+<span class="w">    </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postinit</span>
 
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete a filesystem</span>
-<span class="w">  </span><span class="nt">arensb.truenas.filesystem</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pool0/mydata</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run a script at shutdown</span>
+<span class="w">  </span><span class="nt">initscript</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cleaning up</span>
+<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">#!/bin/sh</span>
+<span class="w">      </span><span class="no">echo &quot;Cleaning up before shutdown.&quot;</span>
+<span class="w">      </span><span class="no">service foo stop</span>
+<span class="w">      </span><span class="no">rm /var/some-lock-file</span>
+<span class="w">    </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shutdown</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete an init script</span>
+<span class="w">  </span><span class="nt">initscript</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remove old cruft</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start Foo</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
 </pre></div>
 </div>
@@ -217,10 +273,11 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="return-filesystem"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-return-filesystem"><strong>filesystem</strong></p>
-<a class="ansibleOptionLink" href="#return-filesystem" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+<div class="ansibleOptionAnchor" id="return-script"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-initscript-module-return-script"><strong>script</strong></p>
+<a class="ansibleOptionLink" href="#return-script" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>A data structure describing the characteristics of a newly-created filesystem.</p>
+<td><div class="ansible-option-cell"><p>A data structure describing a newly-created init script.</p>
+<p>Only returned when a script is created.</p>
 <p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
 </div></td>
 </tr>
@@ -241,8 +298,8 @@
           
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Arensb.Truenas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="group_module.html" class="btn btn-neutral float-right" title="arensb.truenas.group module – Manage groups" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hostname_module.html" class="btn btn-neutral float-left" title="arensb.truenas.hostname module – Set the hostname." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="jail_module.html" class="btn btn-neutral float-right" title="arensb.truenas.jail module – Manage a jail" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
