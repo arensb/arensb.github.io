@@ -21,7 +21,7 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="arensb.truenas.filesystem module – Manage ZFS filesystems" href="filesystem_module.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+    <link rel="next" title="arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware" href="filesystem_module.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
 
@@ -74,7 +74,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
   
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="filesystem_module.html">arensb.truenas.filesystem module – Manage ZFS filesystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystem_module.html">arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_module.html">arensb.truenas.group module – Manage groups</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname_module.html">arensb.truenas.hostname module – Set the hostname.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="initscript_module.html">arensb.truenas.initscript module – Manage init/shutdown scripts.</a></li>
@@ -124,7 +124,7 @@
              
   <section id="arensb-truenas">
 <span id="plugins-in-arensb-truenas"></span><h1>Arensb.Truenas<a class="headerlink" href="#arensb-truenas" title="Permalink to this heading"></a></h1>
-<p>Collection version 1.10.1</p>
+<p>Collection version 1.11.4</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
@@ -139,6 +139,7 @@
 <li><p>Andrew Arensburger (<a class="reference external" href="https://ooblick.com/">https://ooblick.com/</a>)</p></li>
 <li><p>Ed Hull (<a class="reference external" href="https://github.com/edhull">https://github.com/edhull</a>)</p></li>
 <li><p>Steven Ellis (<a class="reference external" href="https://github.com/steven-ellis">https://github.com/steven-ellis</a>)</p></li>
+<li><p>Paul Heidenreich (<a class="reference external" href="https://github.com/Paulomart">https://github.com/Paulomart</a>)</p></li>
 </ul>
 <p><strong>Supported ansible-core versions:</strong></p>
 <ul class="simple">
@@ -156,7 +157,7 @@
 <section id="modules">
 <h3>Modules<a class="headerlink" href="#modules" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="filesystem_module.html#ansible-collections-arensb-truenas-filesystem-module"><span class="std std-ref">filesystem module</span></a> – Manage ZFS filesystems</p></li>
+<li><p><a class="reference internal" href="filesystem_module.html#ansible-collections-arensb-truenas-filesystem-module"><span class="std std-ref">filesystem module</span></a> – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware</p></li>
 <li><p><a class="reference internal" href="group_module.html#ansible-collections-arensb-truenas-group-module"><span class="std std-ref">group module</span></a> – Manage groups</p></li>
 <li><p><a class="reference internal" href="hostname_module.html#ansible-collections-arensb-truenas-hostname-module"><span class="std std-ref">hostname module</span></a> – Set the hostname.</p></li>
 <li><p><a class="reference internal" href="initscript_module.html#ansible-collections-arensb-truenas-initscript-module"><span class="std std-ref">initscript module</span></a> – Manage init/shutdown scripts.</p></li>
@@ -189,7 +190,7 @@
           
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="filesystem_module.html" class="btn btn-neutral float-right" title="arensb.truenas.filesystem module – Manage ZFS filesystems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="filesystem_module.html" class="btn btn-neutral float-right" title="arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

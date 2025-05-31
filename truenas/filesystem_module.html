@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>arensb.truenas.filesystem module – Manage ZFS filesystems &mdash; Ansible collections  documentation</title>
+  <title>arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware &mdash; Ansible collections  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/ansible.css" type="text/css" />
       <link rel="stylesheet" href="_static/antsibull-minimal.css" type="text/css" />
@@ -75,11 +75,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
   
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">arensb.truenas.filesystem module – Manage ZFS filesystems</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#return-values">Return Values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authors">Authors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#collection-links">Collection links</a></li>
 </ul>
 </li>
@@ -121,7 +122,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">arensb.truenas.filesystem module – Manage ZFS filesystems</li>
+      <li class="breadcrumb-item active">arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -132,15 +133,14 @@
   
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-arensb-truenas-filesystem-module"></span><section id="arensb-truenas-filesystem-module-manage-zfs-filesystems">
-<h1>arensb.truenas.filesystem module – Manage ZFS filesystems<a class="headerlink" href="#arensb-truenas-filesystem-module-manage-zfs-filesystems" title="Permalink to this heading"></a></h1>
+  <span class="target" id="ansible-collections-arensb-truenas-filesystem-module"></span><section id="arensb-truenas-filesystem-module-manage-zfs-datasets-filesystems-volumes-via-truenas-middleware">
+<h1>arensb.truenas.filesystem module – Manage ZFS datasets (filesystems/volumes) via TrueNAS middleware<a class="headerlink" href="#arensb-truenas-filesystem-module-manage-zfs-datasets-filesystems-volumes-via-truenas-middleware" title="Permalink to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.10.1).</p>
+<p>This module is part of the <a class="reference external" href="https://galaxy.ansible.com/arensb/truenas">arensb.truenas collection</a> (version 1.11.4).</p>
 <p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">arensb.truenas</span></code>.</p>
 <p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">arensb.truenas.filesystem</span></code>.</p>
 </div>
-<p class="ansible-version-added">New in arensb.truenas 0.3.0</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
@@ -152,7 +152,9 @@
 <section id="synopsis">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Create, delete, and manage ZFS filesystems. Currently this is limited to just creation and deletion.</p></li>
+<li><p>Create, update, and delete ZFS datasets on TrueNAS using the middleware API.</p></li>
+<li><p>Prevents sending null or invalid fields that cause errors.</p></li>
+<li><p>Normalizes property values so that e.g. ‘64K’ is treated the same as ‘65536’ for volblocksize comparisons. If a user tries to change volblocksize or sparse on an existing volume, the module raises an error (since TrueNAS disallows it).</p></li>
 </ul>
 </section>
 <section id="parameters">
@@ -168,21 +170,61 @@
 <div class="ansibleOptionAnchor" id="parameter-comment"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-comment"><strong>comment</strong></p>
 <a class="ansibleOptionLink" href="#parameter-comment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Comment attached to the filesystem.</p>
+<td><div class="ansible-option-cell"><p>Arbitrary comment or notes for the dataset.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-create_ancestors"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-create-ancestors"><strong>create_ancestors</strong></p>
+<a class="ansibleOptionLink" href="#parameter-create_ancestors" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>If True, create any missing parent datasets automatically when creating.</p>
+<p>Under TrueNAS CORE, this option is ignored. However, missing ancestors are not created.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-force_size"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-force-size"><strong>force_size</strong></p>
+<a class="ansibleOptionLink" href="#parameter-force_size" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether to ignore checks if the volume size is below thresholds.</p>
+<p>Only valid for type=VOLUME.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">false</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-name"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-name"><strong>name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Name of the filesystem.</p>
+<td><div class="ansible-option-cell"><p>Full name (ZFS path) of the dataset, e.g. “pool/dataset”.</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-sparse"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-sparse"><strong>sparse</strong></p>
+<a class="ansibleOptionLink" href="#parameter-sparse" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Whether to create a sparse volume (if type=VOLUME).</p>
+<p>Cannot be changed after creation.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-state"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-state"><strong>state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Whether the filesystem should exist or not.</p>
+<td><div class="ansible-option-cell"><p>If “present”, ensure the dataset is created/updated.</p>
+<p>If “absent”, ensure the dataset is deleted.</p>
 <p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
 <ul class="simple">
 <li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;absent&quot;</span></code></p></li>
@@ -190,19 +232,75 @@
 </ul>
 </div></td>
 </tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-type"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-type"><strong>type</strong></p>
+<a class="ansibleOptionLink" href="#parameter-type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Dataset type: FILESYSTEM or VOLUME.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><span class="pre">&quot;FILESYSTEM&quot;</span></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;VOLUME&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;filesystem&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;volume&quot;</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-volblocksize"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-volblocksize"><strong>volblocksize</strong></p>
+<a class="ansibleOptionLink" href="#parameter-volblocksize" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Volume block size if type=VOLUME, e.g. “64K” or “65536”.</p>
+<p>Only valid at dataset creation time; cannot be changed on an existing volume.</p>
+<p class="ansible-option-line"><span class="ansible-option-choices">Choices:</span></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;512&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;512B&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;1K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;2K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;4K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;8K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;16K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;32K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;64K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;128K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;256K&quot;</span></code></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">&quot;65536&quot;</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-volsize"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-parameter-volsize"><strong>volsize</strong></p>
+<a class="ansibleOptionLink" href="#parameter-volsize" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Size of the volume if type=VOLUME.</p>
+<p>This can be either an integer, or a string like ‘640K’, ‘32MB’, ‘10GiB’, or ‘1TB’.</p>
+<dl class="simple">
+<dt>Allowable  suffixes are:</dt><dd><p>“K”, “M”, “G”, “T” (powers of 2),
+“KB”, “MB”, “GB”, “TB” (powers of 10),
+“KiB”, “MiB”, “GiB”, “TiB” (powers of 2)</p>
+</dd>
+</dl>
+<p>This is required when creating a volume, but not when updating an existing one.</p>
+</div></td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="examples">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create a filesystem</span>
-<span class="w">  </span><span class="nt">arensb.truenas.filesystem</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pool0/mydata</span>
-
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete a filesystem</span>
-<span class="w">  </span><span class="nt">arensb.truenas.filesystem</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pool0/mydata</span>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete dataset if it exists</span>
+<span class="w">  </span><span class="nt">filesystem</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-expansion/chunkr3</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create volume with &#39;sparse&#39; = true</span>
+<span class="w">  </span><span class="nt">filesystem</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-expansion/test-iscsi</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOLUME</span>
+<span class="w">    </span><span class="nt">volsize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">655360</span>
+<span class="w">    </span><span class="nt">volblocksize</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;64K&quot;</span>
+<span class="w">    </span><span class="nt">sparse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </section>
@@ -220,12 +318,18 @@
 <div class="ansibleOptionAnchor" id="return-filesystem"></div><p class="ansible-option-title" id="ansible-collections-arensb-truenas-filesystem-module-return-filesystem"><strong>filesystem</strong></p>
 <a class="ansibleOptionLink" href="#return-filesystem" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>A data structure describing the characteristics of a newly-created filesystem.</p>
-<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> success</p>
+<td><div class="ansible-option-cell"><p>Dataset properties as returned by the TrueNAS middleware.</p>
+<p class="ansible-option-line"><span class="ansible-option-returned-bold">Returned:</span> on success</p>
 </div></td>
 </tr>
 </tbody>
 </table>
+<section id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Your Name (&#64;yourhandle)</p></li>
+</ul>
+</section>
 <section id="collection-links">
 <h3>Collection links<a class="headerlink" href="#collection-links" title="Permalink to this heading"></a></h3>
 <p class="ansible-links">
